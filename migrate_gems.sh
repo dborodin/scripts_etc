@@ -14,9 +14,9 @@ gem list | grep '(' | while read i; do
   VERSIONS=`echo $i | awk -F'(' '{print $2}' | tr -d ')'`; 
   if (echo "$VERSIONS" | grep -q ','); then
     echo "$VERSIONS" | tr ',' '\n' | while read j; do 
-      echo "gem install $GEM -v `echo $j --ignore-dependencies | cut -f1 -d' '`"; 
+      echo "gem install --ignore-dependencies $GEM -v `echo $j | cut -f1 -d' '`"; 
     done;
   else 
-    echo "gem install $GEM -v `echo $VERSIONS --ignore-dependencies | cut -f1 -d' '`"; 
+    echo "gem install --ignore-dependencies $GEM -v `echo $VERSIONS | cut -f1 -d' '`"; 
   fi; 
 done
